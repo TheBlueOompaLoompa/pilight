@@ -1,38 +1,17 @@
-# create-svelte
+# PiLight
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+IoT control for Neopixel(WS281b) led strips
+---
+Control a RGBIC led strip over WiFi with a modular pattern system and *scheduled actions*(comming soon).
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+## Requirements
+- Must be a Raspberry Pi 3-0w, Raspberry Pi 4 is not supported by the led control library.
+- At least 8GB Micro SD card
+- A Neopixel(WS281b) light strip rated at 5 volts.
+- On the pi
+  - Git
+  - NodeJS (Other versions haven't been tested, go for the latest lts release)
+  - Yarn (NPM is evil lol)
+  - Disable audio (There are like 5 different ways to do this, so try to do them all because I have no clue which one works)
+## Installation
+TODO
