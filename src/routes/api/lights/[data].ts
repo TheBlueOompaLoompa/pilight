@@ -45,6 +45,7 @@ export async function get({ params }) {
 	};
 }
 
+// Update state
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function post({ params }) {
 	const data = params['data'].split(',');
