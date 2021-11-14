@@ -10,18 +10,21 @@ if(typeof driver == 'undefined') {
 driver.channels[0].leds.fill(0x000000);
 driver.channels[0].render();
 
-const patternFiles = fs.readdirSync('/home/pi/pilight/src/lib/patterns/')
-
-let pattern: any = {name: 'Starting', settings: {}, draw: function(a, b, c) {return {leds: a, persist: c}}};
-
+let pattern: any;
 let patterns = [];
 let settings = {};
 let persistentData = {};
 
+// Set default pattern
+import Solid from '$lib/patterns/solid';
+pattern = Solid;
+patterns.push(Solid);
+
+// Import all patterns at startup
+const patternFiles = fs.readdirSync('/home/pi/pilight/src/lib/patterns/')
 patternFiles.forEach(file => {
 	import(`/home/pi/pilight/src/lib/patterns/${file}`).then(pat => {
-		if(pat.default.name == 'Solid Color') pattern = pat.default;
-		patterns.push(pat.default);
+		if(pat.default.name != 'Solid Color') patterns.push(pat.default);
 	})	
 })
 
