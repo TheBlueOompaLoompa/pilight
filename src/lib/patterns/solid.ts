@@ -7,6 +7,6 @@ export default {
 		}
 	],
 	draw: function(leds: Uint32Array, settings: any, persist: any) {
-		return {leds: leds.fill(parseInt(settings['Color'], 16) | 0xff0000), persistentData: persist};
+		return {leds: leds.fill(parseInt(settings['Color'], 16)), persistentData: persist};
 	}
 }
