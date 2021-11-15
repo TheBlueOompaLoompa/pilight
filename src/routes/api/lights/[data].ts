@@ -32,7 +32,7 @@ patternFiles.forEach(file => {
 setInterval(() => {
 	({leds: driver.channels[0].leds, persistentData} = pattern.draw(driver.channels[0].leds, settings, persistentData))
 	driver.render();
-},1000/30)
+},1000/120)
 
 
 // Get state
@@ -55,9 +55,12 @@ export async function post({ params }) {
 	if(data[0] == 'setting') {
 		settings[data[1]] = data[2]
 	}else if(data[0] == 'pattern') {
+		console.log(data[1])
 		patterns.forEach(pat => {
 			if(pat.name == data[1]) {
 				pattern = pat;
+				persistentData = {};
+				console.log(pat);
 			}
 		})
 	}
