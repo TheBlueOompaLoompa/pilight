@@ -37,19 +37,29 @@
 {#await getInfo()}
 	<p>Loading...</p>
 {:then data}
-	<select bind:value={patternName} on:change={setPattern}>
-		{#each data.patterns as pattern}
-		<option value={pattern.name}>{pattern.name}</option>
+	<oneline>
+	<center style="border-right: 1px solid gray; margin-right: 20px; padding-right: 20px;">
+		<h2>Pattern</h2>
+		<select bind:value={patternName} on:change={setPattern}>
+			{#each data.patterns as pattern}
+			<option value={pattern.name}>{pattern.name}</option>
+			{/each}
+		</select>
+	</center>
+	<center>
+		<h2>Settings</h2>
+		{#each pattern.settings as setting}
+			<oneline>
+				<h3>{setting.name}</h3>
+				{#if setting.type == 'color'}
+					<input type="color" value={`#${settings[setting.name]}`} on:change={(e) => {updateSetting(setting.name, e.target.value.replace('#', ''))}}>
+				{:else if setting.type == 'range'}
+					<input type="range" min={setting.min} max={setting.max} on:change={(e) => {updateSetting(setting.name, e.target.value)}}>
+				{/if}
+			</oneline>
 		{/each}
-	</select>
-	{#each pattern.settings as setting}
-		<h3>{setting.name}</h3>
-		{#if setting.type == 'color'}
-			<input type="color" value={`#${settings.color}`} on:change={(e) => {updateSetting(setting.name, e.target.value.replace('#', ''))}}>
-		{:else if setting.type == 'range'}
-			<input type="range" min={setting.min} max={setting.max} on:change={(e) => {updateSetting(setting.name, e.target.value)}}>
-		{/if}
-	{/each}
+	</center>
+	</oneline>
 {:catch}
 <h2>Error</h2>
 <p>Try reloading</p>
